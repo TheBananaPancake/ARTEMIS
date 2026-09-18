@@ -1,8 +1,8 @@
+![BLAZE](assets/ascii_art.png)
+
 > [!NOTE]
 > The features described below are likely not implemented yet as this project is still in active
 > development!
-
-![BLAZE](assets/ascii_art.png)
 
 BLAZE is a minimal UNIX-like operating system targeting x86_64 architecture. It is partially based
 on [Nix](https://nixos.org/) and nixpkgs to ensure the system is reproducible and declarative.
