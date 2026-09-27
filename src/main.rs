@@ -6,7 +6,7 @@ mod boot;
 
 #[unsafe(no_mangle)]
 fn main() -> ! {
-    loop{}
+    loop {}
 }
 
 #[panic_handler]
