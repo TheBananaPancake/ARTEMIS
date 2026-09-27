@@ -2,3 +2,8 @@
 /artemis-x86_64.iso
 
 /bootloader/limine/limine
+
+/iso_root/boot/artemis
+/iso_root/boot/limine-bios.sys
+/iso_root/boot/limine-bios-cd.bin
+/iso_root/boot/limine-uefi-cd.bin
