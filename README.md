@@ -4,7 +4,7 @@
 > The features described below are likely not implemented yet as this project is still in active
 > development!
 
-BLAZE is a Rust-based micro-kernel for operating systems targeting x86_64 architecture using the
+BLAZE is a Rust-based microkernel for operating systems targeting x86_64 architecture using the
 Limine bootloader.
 
 ## Building from source
