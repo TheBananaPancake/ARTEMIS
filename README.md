@@ -4,8 +4,8 @@
 > The features described below are likely not implemented yet as this project is still in active
 > development!
 
-BLAZE is a minimal UNIX-like operating system targeting x86_64 architecture. It is partially based
-on [Nix](https://nixos.org/) and nixpkgs to ensure the system is reproducible and declarative.
+BLAZE is a Rust-based micro-kernel for operating systems targeting x86_64 architecture using the
+Limine bootloader.
 
 ## Building from source
 Prerequisites:
