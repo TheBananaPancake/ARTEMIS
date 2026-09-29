@@ -1,6 +1,6 @@
 OUTPUT_FORMAT(elf64-x86-64)
 OUTPUT_ARCH(i386:x86-64)
-ENTRY(main)
+ENTRY(_start)
 
 PHDRS
 {
@@ -14,33 +14,30 @@ SECTIONS
     . = 0xffffffff80000000;
     .text :
     {
-        *(.text.main)
+        *(.text .text.*)
     } :text
 
     . = ALIGN(4096);
     .rodata :
     {
-        *(.rodata)
-        *(.rodata.*)
+        *(.rodata .rodata.*)
     } :rodata
 
     .limine-requests :
     {
         KEEP(*(.limine-requests-start))
-        KEEP(*(.limine-requests-base))
+        KEEP(*(.limine-requests))
         KEEP(*(.limine-requests-end))
     } :rodata
 
     . = ALIGN(4096);
     .data :
     {
-        *(.data)
-        *(.data.*)
+        *(.data .data.*)
     } :data
 
     .bss :
     {
-        *(.bss)
-        *(.bss.*)
+        *(.bss .bss.*)
     } :data
 }

@@ -1,7 +1,6 @@
 #!/bin/sh
 set -e
 
-cargo clean
 cargo build
 
 cp target/x86_64-unknown-none/debug/artemis iso_root/boot/artemis
