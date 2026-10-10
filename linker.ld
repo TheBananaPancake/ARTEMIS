@@ -23,11 +23,11 @@ SECTIONS
         *(.rodata .rodata.*)
     } :rodata
 
-    .limine-requests :
+    .requests :
     {
-        KEEP(*(.limine-requests-start))
-        KEEP(*(.limine-requests))
-        KEEP(*(.limine-requests-end))
+        KEEP(*(.requests-start))
+        KEEP(*(.requests))
+        KEEP(*(.requests-end))
     } :rodata
 
     . = ALIGN(4096);

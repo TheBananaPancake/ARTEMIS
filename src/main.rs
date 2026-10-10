@@ -1,45 +1,42 @@
 #![no_std]
 #![no_main]
-use core::arch::asm;
+use crate::boot::{BASE_REVISION, BootFramebuffer, FRAMEBUFFER_REQUEST};
 use core::panic::PanicInfo;
-
-use limine::framebuffer::Framebuffer;
-
-use crate::boot::FRAMEBUFFER_REQUEST;
+// use limine::framebuffer::Framebuffer;
+use x86_64::instructions::hlt;
 
 mod arch;
 mod boot;
 
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
-    idle();
+    loop {
+        hlt();
+    }
 }
 
 #[unsafe(no_mangle)]
 unsafe extern "C" fn _start() -> ! {
-    let Some(response) = FRAMEBUFFER_REQUEST.response() else {
-        panic!("Framebuffer request response not received.")
+    assert!(BASE_REVISION.is_supported());
+
+    let fb = FRAMEBUFFER_REQUEST
+        .response()
+        .expect("Framebuffer response not found!")
+        .framebuffers()
+        .first()
+        .expect("Framebuffer not found!");
+    let framebuffer: BootFramebuffer = BootFramebuffer {
+        addr: fb.address() as *mut u32,
+        width: fb.width,
+        height: fb.height,
+        pitch: fb.pitch,
     };
-    let Some(framebuffer) = response.framebuffers().first() else {
-        panic!("Framebuffer not found.")
-    };
-    draw_char('A', framebuffer);
-    idle();
+
+    kmain();
 }
 
-fn idle() -> ! {
+fn kmain() -> ! {
     loop {
-        unsafe {
-            asm!("hlt");
-        }
+        hlt();
     }
-}
-
-fn draw_char(char: char, fb: &FrameBuffer) {
-    let base: *mut u8 = fb.address() as *mut u8;
-    let bytes_per_pixel: usize = (fb.bpp / 8) as usize;
-
-    let width: usize = fb.width as usize;
-    let height: usize = fb.height as usize;
-    let pitch: usize = fb.pitch as usize;
 }

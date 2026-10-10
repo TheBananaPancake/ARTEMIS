@@ -3,5 +3,11 @@ name = "artemis"
 version = "0.1.0"
 edition = "2024"
 
+[[bin]]
+name = "artemis"
+test = false
+bench = false
+
 [dependencies]
 limine = "0.6.5"
+x86_64 = "0.15.5"
